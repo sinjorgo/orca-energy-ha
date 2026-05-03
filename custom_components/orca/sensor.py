@@ -11,7 +11,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import DOMAIN, EXCLUDED_IDS
+from .const import DOMAIN, EXCLUDED_IDS, LOGGER
 from .coordinator import OrcaDataUpdateCoordinator
 from .entity import OrcaEntity
 
@@ -42,6 +42,8 @@ class OrcaSensor(OrcaEntity, SensorEntity):
     def __init__(self, coordinator: OrcaDataUpdateCoordinator, unique_id: str) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator, unique_id)
+
+        LOGGER.debug("Initializing: %s", self.tag_data)
 
         unit = getattr(self.tag_data.config, "unit", "")
 

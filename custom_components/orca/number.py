@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import DOMAIN, EXCLUDED_IDS
+from .const import DOMAIN, EXCLUDED_IDS, LOGGER
 from .coordinator import OrcaDataUpdateCoordinator
 from .entity import OrcaEntity
 
@@ -38,6 +38,9 @@ class OrcaNumber(OrcaEntity, NumberEntity):
     def __init__(self, coordinator: OrcaDataUpdateCoordinator, unique_id: str) -> None:
         """Initialize."""
         super().__init__(coordinator, unique_id)
+
+        LOGGER.debug("Initializing: %s", self.tag_data)
+
         config = self.tag_data.config
 
         if config.unit:

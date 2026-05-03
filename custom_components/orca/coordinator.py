@@ -31,6 +31,10 @@ class OrcaDataUpdateCoordinator(DataUpdateCoordinator[dict[str, OrcaTagValue]]):
             # fetch_all returns a list of OrcaTagValue
             data_list = await self.api.fetch_all()
 
+            LOGGER.debug(
+               "Coordinator data:\n%s", "\n".join([str(item) for item in data_list])
+            )
+
             # Convert list to dict keyed by unique_id (from orca_api)
             return {item.config.unique_id: item for item in data_list}
 
