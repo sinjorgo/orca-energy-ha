@@ -1,5 +1,4 @@
 """Pydantic models for Orca integration configuration."""
-
 from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Field
@@ -42,6 +41,8 @@ class BaseSensor(BaseModel):
     name: LocalizedName
     description: str = ""  # Default empty string if missing
     heating_circuit: int
+    # When True, the entity is always created regardless of circuit detection.
+    force_include: bool = False
     adjustable: AdjustableSettings = Field(default_factory=AdjustableSettings)
 
 
