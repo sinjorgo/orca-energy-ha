@@ -206,7 +206,10 @@ class OrcaApi:
         final_config = []
 
         for config in config_entries:
-            if config.heating_circuit not in self.available_circuits:
+            if (
+                not config.force_include
+                and config.heating_circuit not in self.available_circuits
+            ):
                 continue
 
             unique_id = config.id
