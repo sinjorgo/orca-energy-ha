@@ -852,6 +852,7 @@
   adjustable:
     enabled: false
   heating_circuit: 3
+  force_include: true
 
 ## Buffer tank - zalogovnik, simulated heating circuit 5 ##
 - tag: 2_Temp_Zalog
